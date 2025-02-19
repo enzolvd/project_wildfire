@@ -8,8 +8,6 @@ This repository contains the implementation of a wildfire detection system using
 - [Dataset](#dataset)
 - [Project Structure](#project-structure)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -61,7 +59,7 @@ The repository is organized as follows:
 
 3. **Download the dataset:**
    - Download the dataset from [Kaggle](https://www.kaggle.com/datasets/abdelghaniaaba/wildfire-prediction-dataset) and place it in the `data/` directory.
-
+  
 4. **Train the models:**
    - Train the context encoder model:
      ```bash
@@ -74,3 +72,6 @@ The repository is organized as follows:
 
 5. **Visualize the results:**
    - Open the `visualisation.ipynb` notebook to visualize the model outputs and data.
+  
+6. **Models weight**
+   - Weights are available at [model weights](https://shorturl.at/JuJes)

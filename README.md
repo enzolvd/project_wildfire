@@ -23,12 +23,14 @@ The repository is organized as follows:
 
 ```
 .
-├── checkpoints
-│   └── context_encoder
-├── context_encoder
 ├── baseline
-├── satlas_swin
+├── checkpoints
+│   └── baseline
+│   └── context_encoder
+│   └── satlas_swin
+├── context_encoder
 ├── data
+├── satlas_swin
 ├── outputs
 └── README.md
 ```

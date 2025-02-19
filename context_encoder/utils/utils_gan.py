@@ -5,7 +5,7 @@ import io
 import wandb
 from PIL import Image
 import matplotlib.pyplot as plt
-from project_wildfire.context_encoder.model import reconstruction_loss, adversarial_loss
+from model import reconstruction_loss, adversarial_loss
 
 def get_mask(input_shape, mask_size=(50,50)):
     batch_size, _, height, width = input_shape
@@ -141,15 +141,6 @@ def validation(context_encoder, discriminator, data_loader, device, mask_size=50
     # Return average losses
     return {k: sum(v) / len(v) for k, v in losses.items()}
 
-
-def fig_to_wandb_image(fig):
-    """Convert matplotlib figure to wandb image."""
-    buf = io.BytesIO()
-    fig.savefig(buf, format="png")
-    buf.seek(0)
-    image = Image.open(buf).convert("RGB")
-    return wandb.Image(image)
-
 def plot_comparison(true, pred, title):
     """Create comparison plots for model predictions vs ground truth."""
     fig, axes = plt.subplots(1, 2, figsize=(12, 4))
@@ -172,18 +163,6 @@ def save_checkpoint(
     epoch,
     val_losses,
 ):
-    """
-    Save checkpoint for both context encoder and discriminator
-    
-    Args:
-        save_path: Path to save checkpoint
-        context_encoder: Context encoder model
-        discriminator: Discriminator model
-        g_optimizer: Generator (context encoder) optimizer
-        d_optimizer: Discriminator optimizer
-        epoch: Current epoch number
-        val_losses: Dictionary containing validation losses
-    """
     checkpoint = {
         'epoch': epoch,
         'context_encoder_state_dict': context_encoder.state_dict(),
@@ -201,19 +180,6 @@ def load_checkpoint(
     g_optimizer=None,
     d_optimizer=None,
 ):
-    """
-    Load checkpoint for both context encoder and discriminator
-    
-    Args:
-        checkpoint_path: Path to checkpoint file
-        context_encoder: Context encoder model
-        discriminator: Discriminator model
-        g_optimizer: Optional generator (context encoder) optimizer
-        d_optimizer: Optional discriminator optimizer
-    
-    Returns:
-        dict: Checkpoint dictionary containing epoch and validation losses
-    """
     checkpoint = torch.load(checkpoint_path, map_location='cpu')
     
     # Load model states

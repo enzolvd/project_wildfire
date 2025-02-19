@@ -4,27 +4,23 @@ import torch.nn as nn
 import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
-from tqdm import tqdm
 import wandb
 
-from utils_w import (
+from utils.utils_gan import (
     train_one_epoch,
     validation,
     save_checkpoint,
     get_mask,
-    apply_mask,
-    plot_comparison,
-    fig_to_wandb_image
+    plot_comparison
 )
-from load_dataset import get_all_datasets
-from model_gan_w_light import ContextEncoder, Discriminator
+from utils.load_dataset import get_all_datasets
+from model import ContextEncoder, Discriminator
 from torch.utils.data import DataLoader
 from torchvision import transforms
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-loss_fn = {'MSE': nn.MSELoss(),
-           'CE': nn.CrossEntropyLoss()}
+
 
 def load_checkpoint(checkpoint_path, context_encoder, discriminator, g_optimizer, d_optimizer):
     checkpoint = torch.load(checkpoint_path)
@@ -41,12 +37,11 @@ def main():
     parser.add_argument("--batch_size", type=int, default=64, help="Batch size.")
     parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate.")
     parser.add_argument("--data_dir", type=str, default="./data", help="Root directory for dataset.")
-    parser.add_argument("--seed", type=int, default=42, help="Random seed.")
     parser.add_argument("--hidden_dim", type=int, default=64, help="Size of hidden dim.")
     parser.add_argument("--mask_size", type=int, default=50, help="Size of mask")
     parser.add_argument("--run_name", type=str, default='default_run', help="Name of the run")
-    parser.add_argument("--bar_load", type=bool, default=False, help="Tqdm bar")
-    parser.add_argument("--load_from_checkpoint", type=bool, default=False, help="Load from checkpoint")
+    parser.add_argument("--bar_load", action="store_true", help="Load from checkpoint")
+    parser.add_argument("--load_from_checkpoint", action="store_true", help="Load from checkpoint")
     args = parser.parse_args()
 
     # -------------------
@@ -80,6 +75,9 @@ def main():
     train_loader = DataLoader(pretrain_dataset, batch_size=args.batch_size, shuffle=True, num_workers=8)
     val_loader   = DataLoader(train_dataset,   batch_size=args.batch_size, shuffle=False, num_workers=8)
 
+    # -------------------
+    # Training helper with wandb
+    # -------------------
     # Check if a run with the given name already exists
     api = wandb.Api()
     project = "wildfire"

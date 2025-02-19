@@ -143,13 +143,17 @@ def validation(context_encoder, discriminator, data_loader, device, mask_size=50
 
 def plot_comparison(true, pred, title):
     """Create comparison plots for model predictions vs ground truth."""
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
     
     im1 = axes[0].imshow(true)
     axes[0].set_title('True')
+    axes[0].set_xticks([])
+    axes[0].set_yticks([])
     
     im2 = axes[1].imshow(pred)
     axes[1].set_title('Predicted')
+    axes[1].set_xticks([])
+    axes[1].set_yticks([])
     
     plt.suptitle(title)
     return fig
@@ -191,9 +195,9 @@ def load_checkpoint(
         g_optimizer.load_state_dict(checkpoint['g_optimizer_state_dict'])
     if d_optimizer is not None:
         d_optimizer.load_state_dict(checkpoint['d_optimizer_state_dict'])
-    
-    return {
-        'epoch': checkpoint['epoch'],
-        'val_losses': checkpoint['val_losses']
-    }
+    if 'epoch' in checkpoint.keys():
+        return {
+            'epoch': checkpoint['epoch'],
+            'val_losses': checkpoint['val_losses']
+        }
 

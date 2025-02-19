@@ -32,7 +32,7 @@ def load_checkpoint(checkpoint_path, context_encoder, discriminator, g_optimizer
 
 def main():
     parser = argparse.ArgumentParser(description="Train a wildfire prediction model.")
-    parser.add_argument("--checkpoint", type=str, default="./checkpoints", help="Path to checkpoint.")
+    parser.add_argument("--checkpoint", type=str, default="./checkpoints/context_encoder", help="Path to checkpoint.")
     parser.add_argument("--epochs", type=int, default=100, help="Number of training epochs.")
     parser.add_argument("--batch_size", type=int, default=64, help="Batch size.")
     parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate.")

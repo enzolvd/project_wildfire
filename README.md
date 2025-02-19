@@ -2,20 +2,15 @@
 
 This repository contains the implementation of a wildfire detection system using machine learning techniques. The project leverages a dataset from Kaggle to train models for predicting wildfire occurrences.
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Dataset](#dataset)
-- [Project Structure](#project-structure)
-- [Usage](#usage)
-
-## Introduction
-
-Wildfires pose a significant threat to ecosystems and human communities. Early detection and prediction of wildfires can help mitigate their impact. This project aims to develop a robust system for wildfire detection using deep learning models.
-
 ## Dataset
 
-The dataset used in this project is available on Kaggle: [Wildfire Prediction Dataset](https://www.kaggle.com/datasets/abdelghaniaaba/wildfire-prediction-dataset). It contains various features that are relevant to wildfire prediction, such as weather conditions, geographical information, and historical wildfire data.
+The dataset used in this project is available on Kaggle: [Wildfire Prediction Dataset](https://www.kaggle.com/datasets/abdelghaniaaba/wildfire-prediction-dataset).  The dataset contains three folders: a training set, a validation set, and a test set. However, there specific constraints and guidelines are followed:
+
+  **1. Dataset Access and Restrictions:** the dataset is composed of a *training set*, a *validation set*, and a *test set*. The project does not use the labels of the training set
+
+  **2. Dataset Splitting:**  the original validation set is split into a new validation set and a new train set. 
+
+
 
 ## Project Structure
 
@@ -77,3 +72,8 @@ The repository is organized as follows:
   
 6. **Models weight**
    - Weights are available at [model weights](https://shorturl.at/JuJes)
+  
+
+## Acknowledgments
+
+- Pre-train with Context Encoders: [Context Encoders: Feature Learning by Inpainting](https://arxiv.org/pdf/1604.07379)

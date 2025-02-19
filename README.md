@@ -27,26 +27,11 @@ The repository is organized as follows:
 .
 ├── checkpoints
 │   └── context_encoder
-│       ├── context_encoder.pt
-│       ├── False_classifier.pt
-│       └── True_classifier.pt
 ├── context_encoder
-│   ├── classifier.py
-│   ├── model.py
-│   ├── __pycache__
-│   │   ├── classifier.cpython-312.pyc
-│   │   └── model.cpython-312.pyc
-│   ├── train_classifier.py
-│   ├── train_context_encoder.py
-│   ├── utils
-│   │   ├── load_dataset.py
-│   │   ├── __pycache__
-│   │   ├── utils_classifier.py
-│   │   └── utils_gan.py
-│   └── visualisation.ipynb
+├── baseline
+├── satlas_swin
 ├── data
 ├── outputs
-│   └── context_encoder
 └── README.md
 ```
 
@@ -89,15 +74,3 @@ The repository is organized as follows:
 
 5. **Visualize the results:**
    - Open the `visualisation.ipynb` notebook to visualize the model outputs and data.
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request if you have any suggestions or improvements.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-For more information, please refer to the [GitHub repository](https://github.com/enzolvd/project_wildfire).

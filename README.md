@@ -18,14 +18,10 @@ The repository is organized as follows:
 
 ```
 .
-├── baseline
-├── checkpoints
-│   └── baseline
-│   └── context_encoder
-│   └── satlas_swin
+├── baseline_vit-finetune_swin-finetune
+├── dino_vit_pretrain
 ├── context_encoder
 ├── data
-├── satlas_swin
 ├── outputs
 └── README.md
 ```

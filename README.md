@@ -61,19 +61,20 @@ wget https://huggingface.co/allenai/satlas-pretrain/resolve/main/satlas-model-v1
 
 ---
 4. **Train the models:**
-   - Train the context encoder model:
-     ```bash
-     python context_encoder/train_context_encoder.py
-     ```
-   - Train the classifier model:
-     ```bash
-     python context_encoder/train_classifier.py
-     ```
+   -Context Encoder:
+     1. Train the context encoder model:
+       ```bash
+       python context_encoder/train_context_encoder.py
+       ```
+     2. Train the classifier model:
+       ```bash
+       python context_encoder/train_classifier.py
+       ```
 
-5. **Visualize the results:**
+6. **Visualize the results:**
    - Open the `visualisation.ipynb` notebook to visualize the model outputs and data.
   
-6. **Models weight**
+7. **Models weight**
    - Weights are available at [model weights](https://shorturl.at/JuJes)
   
 

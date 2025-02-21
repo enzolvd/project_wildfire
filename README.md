@@ -26,7 +26,6 @@ The repository is organized as follows:
 └── README.md
 ```
 
-- **checkpoints/**: Contains saved model checkpoints.
 - **context_encoder/**: Contains the main scripts and utilities for training and evaluating the context encoder model.
   - `classifier.py`: Implementation of the classifier model.
   - `model.py`: Definition of the context encoder model.
@@ -35,8 +34,8 @@ The repository is organized as follows:
   - `utils/`: Utility scripts for loading datasets and other helper functions.
   - `visualisation.ipynb`: Jupyter notebook for visualizing model outputs and data.
 - **data/**: Directory to store dataset files.
-- **outputs/**: Directory to store model outputs and results.
-
+- **baseline_vit-finetune_swin-finetune/**: Contains the scripts for finetuning all the models on the val dataset
+- **dino_vit_pretrain/**: Contains the scripts for pre-training the DINO model.
 ## Usage
 
 1. **Clone the repository:**

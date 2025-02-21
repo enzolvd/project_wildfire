@@ -130,7 +130,7 @@ def main():
 
 
         plot_filename = output_dir / f"{args.model}_{freeze_backbone}_training_plot.png"
-        plot_curves(train_losses, val_losses, val_accuracies, save_path=str(plot_filename), title_suffix=f"({args.model})")
+        # plot_curves(train_losses, val_losses, val_accuracies, save_path=str(plot_filename), title_suffix=f"({args.model})")
         plt.close()
 
         test_loss, test_correct = validate(model, test_loader, criterion, device=device)
@@ -140,17 +140,17 @@ def main():
 
     fig = plt.figure(figsize=(12,5))
     ax = fig.add_subplot(1,2,1)
-    ax.plot(train_losses_model[0], color='blue', linestyle='-', label='Frozen backbone - train')
-    ax.plot(train_losses_model[1], color='red', linestyle='-', label='Unfrozen backbone - train')
-    ax.plot(val_losses_model[0], color='blue', linestyle='--', label='Frozen backbone - validation')
-    ax.plot(val_losses_model[1], color='red', linestyle='--', label='Unfrozen backbone - validation')
+    ax.plot(train_losses_model[0], color='blue', linestyle='-', label='Unfrozen backbone - train')
+    ax.plot(train_losses_model[1], color='red', linestyle='-', label='Frozen backbone - train')
+    ax.plot(val_losses_model[0], color='blue', linestyle='--', label='Unfrozen backbone - validation')
+    ax.plot(val_losses_model[1], color='red', linestyle='--', label='Frozen backbone - validation')
     ax.set_xlabel('Epochs')
     ax.set_ylabel('Loss')
     ax.set_title('Training and Validation Loss')
     ax.legend()
     ax = fig.add_subplot(1,2,2)
-    ax.plot(val_accuracies_model[0], color='blue', linestyle='-', label='Frozen backbone')
-    ax.plot(val_accuracies_model[1], color='red', linestyle='-', label='Unfrozen backbone')
+    ax.plot(val_accuracies_model[0], color='blue', linestyle='-', label='Unfrozen backbone')
+    ax.plot(val_accuracies_model[1], color='red', linestyle='-', label='Frozen backbone')
     ax.set_xlabel('Epochs')
     ax.set_ylabel('Accuracy')
     ax.set_title('Validation Accuracy')

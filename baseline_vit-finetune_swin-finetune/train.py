@@ -31,7 +31,7 @@ def main():
     parser.add_argument("--batch_size", type=int, default=32, help="Batch size.")
     parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate.")
     parser.add_argument("--data_dir", type=str, default="./wildfire-prediction-dataset", help="Root directory for dataset.")
-    parser.add_argument("--output_dir", type=str, default="./outputs", help="Directory to save checkpoints and plots.")
+    parser.add_argument("--output_dir", type=str, default="../outputs", help="Directory to save checkpoints and plots.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed.")
     parser.add_argument("--big_head", action="store_true", help="Use a larger head.")
     parser.add_argument("--freeze_backbone", action="store_true", help="Freeze the backbone")

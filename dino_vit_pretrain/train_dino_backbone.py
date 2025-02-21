@@ -71,7 +71,7 @@ def get_args_parser():
 
     # Misc
     parser.add_argument('--data_path', default='/path/to/imagenet/train/', type=str)
-    parser.add_argument('--output_dir', default=".", type=str)
+    parser.add_argument('--output_dir', default="../outputs", type=str)
     parser.add_argument('--saveckp_freq', default=5, type=int)
     parser.add_argument('--seed', default=0, type=int)
     parser.add_argument('--num_workers', default=10, type=int)

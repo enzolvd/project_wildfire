@@ -51,7 +51,15 @@ The repository is organized as follows:
 
 3. **Download the dataset:**
    - Download the dataset from [Kaggle](https://www.kaggle.com/datasets/abdelghaniaaba/wildfire-prediction-dataset) and place it in the `data/` directory.
-  
+
+3.2 **Download Pretrained Swin Transformer (Optional)**
+If training the **Swin Transformer**, download the pretrained weights:
+
+```bash
+wget https://huggingface.co/allenai/satlas-pretrain/resolve/main/satlas-model-v1-highres.pth -O satlas-model-v1-highres.pth
+```
+
+---
 4. **Train the models:**
    - Train the context encoder model:
      ```bash

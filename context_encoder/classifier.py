@@ -26,7 +26,7 @@ class WildfireClassifier(nn.Module):
             nn.ReLU(),
             nn.Dropout(0.2),
             nn.Linear(128, 2), 
-            nn.Softmax(2)
+            nn.Softmax()
         )
 
     def forward(self, x):

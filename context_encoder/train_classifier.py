@@ -65,7 +65,7 @@ def main():
     freeze = [False, True]
 
     for freeze_backbone in freeze:
-        print(f'Training with freeze backbone={freeze_backbone}')
+        print(f'Training with frozen backbone={freeze_backbone}')
         model = create_wildfire_classifier(path, freeze_backbone=freeze_backbone)
 
         best_model_path = checkpoint_dir / f'{freeze_backbone}_classifier.pt'
@@ -140,17 +140,17 @@ def main():
 
     fig = plt.figure(figsize=(12,5))
     ax = fig.add_subplot(1,2,1)
-    ax.plot(train_losses_model[0], color='blue', linestyle='-', label='Freezed backbone - train')
-    ax.plot(train_losses_model[1], color='red', linestyle='-', label='Unfreezed backbone - train')
-    ax.plot(val_losses_model[0], color='blue', linestyle='--', label='Freezed backbone - validation')
-    ax.plot(val_losses_model[1], color='red', linestyle='--', label='Unfreezed backbone - validation')
+    ax.plot(train_losses_model[0], color='blue', linestyle='-', label='Frozen backbone - train')
+    ax.plot(train_losses_model[1], color='red', linestyle='-', label='Unfrozen backbone - train')
+    ax.plot(val_losses_model[0], color='blue', linestyle='--', label='Frozen backbone - validation')
+    ax.plot(val_losses_model[1], color='red', linestyle='--', label='Unfrozen backbone - validation')
     ax.set_xlabel('Epochs')
     ax.set_ylabel('Loss')
     ax.set_title('Training and Validation Loss')
     ax.legend()
     ax = fig.add_subplot(1,2,2)
-    ax.plot(val_accuracies_model[0], color='blue', linestyle='-', label='Freezed backbone')
-    ax.plot(val_accuracies_model[1], color='red', linestyle='-', label='Unfreezed backbone')
+    ax.plot(val_accuracies_model[0], color='blue', linestyle='-', label='Frozen backbone')
+    ax.plot(val_accuracies_model[1], color='red', linestyle='-', label='Unfrozen backbone')
     ax.set_xlabel('Epochs')
     ax.set_ylabel('Accuracy')
     ax.set_title('Validation Accuracy')

@@ -120,7 +120,7 @@ class Decoder(nn.Module):
         return out
 
 class Discriminator(nn.Module):
-    def __init__(self, in_channel=3, ndf=64, dropout_rate=0.3):
+    def __init__(self, in_channel=3, ndf=64, dropout_rate=0.5):
         super().__init__()
         
         # Input layer: 350x350 -> 175x175

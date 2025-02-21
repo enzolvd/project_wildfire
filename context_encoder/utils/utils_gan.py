@@ -27,7 +27,7 @@ def apply_mask(input, mask):
     output_masked_gt = input*(1-mask)
     return input_masked, output_masked_gt
 
-def train_one_epoch(context_encoder, discriminator, g_optimizer, d_optimizer, data_loader, device, mask_size=50, lambda_rec=0.7, lambda_adv=0.3, bar_load=False):
+def train_one_epoch(context_encoder, discriminator, g_optimizer, d_optimizer, data_loader, device, mask_size=50, lambda_rec=0.999, lambda_adv=0.001, bar_load=False):
     context_encoder.train()
     discriminator.train()
 
@@ -100,7 +100,7 @@ def train_one_epoch(context_encoder, discriminator, g_optimizer, d_optimizer, da
     return {k: sum(v)/len(v) for k, v in losses.items()}
 
 
-def validation(context_encoder, discriminator, data_loader, device, mask_size=50, lambda_rec=0.7, lambda_adv=0.3, bar_load=False):
+def validation(context_encoder, discriminator, data_loader, device, mask_size=50, lambda_rec=0.999, lambda_adv=0.001, bar_load=False):
     context_encoder.eval()
     discriminator.eval()
 

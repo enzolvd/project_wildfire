@@ -61,6 +61,7 @@ wget https://huggingface.co/allenai/satlas-pretrain/resolve/main/satlas-model-v1
 
 ---
 4. **Train the models:**
+
    -Context Encoder:
      1. Train the context encoder model:
        ```bash

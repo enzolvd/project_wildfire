@@ -25,16 +25,18 @@ class WildfireClassifier(nn.Module):
             nn.Linear(256, 128),
             nn.ReLU(),
             nn.Dropout(0.2),
-            nn.Linear(128, 2), 
-            nn.Softmax()
+            nn.Linear(128, 2)
         )
 
     def forward(self, x):
-        # Get encoder features 
+        # Get encoder features
         features, _ = self.encoder(x)
         
         # Pass through classifier
-        output = self.classifier(features)
+        logits = self.classifier(features)
+        
+        output = F.softmax(logits, dim=-1)
+        
         return output.squeeze()
 
 def create_wildfire_classifier(context_encoder_path, freeze_backbone=True,hidden_dim=64):

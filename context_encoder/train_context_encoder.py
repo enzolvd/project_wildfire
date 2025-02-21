@@ -139,7 +139,6 @@ def main():
     print(args.bar_load)
     for epoch in range(args.epochs):
         # Train
-        mask_size = np.random.randint(10,100)
         train_losses = train_one_epoch(
             context_encoder=context_encoder,
             discriminator=discriminator,

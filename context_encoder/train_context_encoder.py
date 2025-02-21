@@ -146,7 +146,7 @@ def main():
             d_optimizer=d_optimizer,
             data_loader=train_loader,
             device=device,
-            mask_size=mask_size,
+            mask_size=args.mask_size,
             bar_load = args.bar_load
         )
 
@@ -156,7 +156,7 @@ def main():
             discriminator=discriminator,
             data_loader=val_loader,
             device=device,
-            mask_size=mask_size,
+            mask_size=args.mask_size,
             bar_load = args.bar_load
         )
 
@@ -167,7 +167,7 @@ def main():
 
         # Visualization and metrics logging
         true = train_dataset[0][0][None].to(device)
-        mask = get_mask(true.shape, mask_size=(mask_size, mask_size)).to(device)
+        mask = get_mask(true.shape, mask_size=(args.mask_size, args.mask_size)).to(device)
         input_masked = true * mask
 
         # Generate prediction

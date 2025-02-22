@@ -4,13 +4,11 @@ This repository contains the implementation of a wildfire detection system using
 
 ## Dataset
 
-The dataset used in this project is available on Kaggle: [Wildfire Prediction Dataset](https://www.kaggle.com/datasets/abdelghaniaaba/wildfire-prediction-dataset).  The dataset contains three folders: a training set, a validation set, and a test set. However, there specific constraints and guidelines are followed:
+The dataset used in this project is available on Kaggle: [Wildfire Prediction Dataset](https://www.kaggle.com/datasets/abdelghaniaaba/wildfire-prediction-dataset). The dataset contains three folders: a training set, a validation set, and a test set. However, specific constraints and guidelines are followed:
 
-  **1. Dataset Access and Restrictions:** the dataset is composed of a *training set*, a *validation set*, and a *test set*. The project does not use the labels of the training set
+1. **Dataset Access and Restrictions:** The dataset is composed of a *training set*, a *validation set*, and a *test set*. The project does not use the labels of the training set.
 
-  **2. Dataset Splitting:**  the original validation set is split into a new validation set and a new train set. 
-
-
+2. **Dataset Splitting:** The original validation set is split into a new validation set and a new train set.
 
 ## Project Structure
 
@@ -19,12 +17,61 @@ The repository is organized as follows:
 ```
 .
 ├── baseline_vit-finetune_swin-finetune
-├── dino_vit_pretrain
+│   ├── models.py
+│   ├── train.py
+│   └── utils.py
+├── checkpoints
+├── coloration_baseline
+│   ├── dataset.py
+│   ├── main.py
+│   ├── model.py
+│   ├── train.py
+│   └── utils.py
 ├── context_encoder
+│   ├── classifier.py
+│   ├── model.py
+│   ├── train_classifier.py
+│   ├── train_context_encoder.py
+│   ├── utils
+│   │   ├── load_dataset.py
+│   │   ├── utils_classifier.py
+│   │   └── utils_gan.py
+│   └── visualisation.ipynb
 ├── data
+├── dino_vit_pretrain
+│   ├── train_dino_backbone.py
+│   ├── utils_dino.py
+│   └── vision_transformer.py
+├── download.py
 ├── outputs
-└── README.md
+├── README.md
+├── requirements.txt
+└── Self_training
+    ├── baselineCNN.py
+    ├── pseudolabel_finetune.ipynb
+    ├── test_models.ipynb
+    └── train_baseline.ipynb
 ```
+
+- **baseline_vit-finetune_swin-finetune/**: Contains the scripts for finetuning all the models on the validation dataset.
+  - `models.py`: Definitions of the models used for finetuning.
+  - `train.py`: Script to train the models.
+  - `utils.py`: Utility functions for training and evaluation.
+
+- **checkpoints/**: Directory to store model checkpoints.
+  - **coloration_baseline/**: Checkpoints for the coloration baseline model.
+  - **context_encoder/**: Checkpoints for the context encoder model.
+  - **dino_backbone/**: Checkpoints for the DINO backbone model.
+  - **dino_vit_finetuned/**: Checkpoints for the finetuned DINO Vision Transformer (ViT) model.
+  - **satlas_swin_finetuned/**: Checkpoints for the finetuned Satlas Swin Transformer model.
+  - **Self-training (pseudo-labeling)/**: Checkpoints for the self-training (pseudo-labeling) model.
+
+- **coloration_baseline/**: Contains the scripts for the coloration baseline model.
+  - `dataset.py`: Dataset loading and preprocessing.
+  - `main.py`: Main script to run the coloration baseline model.
+  - `model.py`: Definition of the coloration baseline model.
+  - `train.py`: Script to train the coloration baseline model.
+  - `utils.py`: Utility functions for training and evaluation.
 
 - **context_encoder/**: Contains the main scripts and utilities for training and evaluating the context encoder model.
   - `classifier.py`: Implementation of the classifier model.
@@ -32,10 +79,37 @@ The repository is organized as follows:
   - `train_classifier.py`: Script to train the classifier model.
   - `train_context_encoder.py`: Script to train the context encoder model.
   - `utils/`: Utility scripts for loading datasets and other helper functions.
+    - `load_dataset.py`: Script to load the dataset.
+    - `utils_classifier.py`: Utility functions for the classifier.
+    - `utils_gan.py`: Utility functions for the GAN.
   - `visualisation.ipynb`: Jupyter notebook for visualizing model outputs and data.
+
 - **data/**: Directory to store dataset files.
-- **baseline_vit-finetune_swin-finetune/**: Contains the scripts for finetuning all the models on the val dataset
+  - **test/**: Test dataset.
+  - **train/**: Training dataset.
+  - **valid/**: Validation dataset.
+
 - **dino_vit_pretrain/**: Contains the scripts for pre-training the DINO model.
+  - `train_dino_backbone.py`: Script to train the DINO backbone model.
+  - `utils_dino.py`: Utility functions for training the DINO model.
+  - `vision_transformer.py`: Definition of the Vision Transformer (ViT) model.
+
+- **outputs/**: Directory to store output files such as visualizations and plots.
+  - **context_encoder/**: Outputs related to the context encoder model.
+    - `context_encoder_False_training_plot.png`: Training plot for the context encoder model with False setting.
+    - `context_encoder__training_plot.png`: Training plot for the context encoder model.
+    - `context_encoder_True_training_plot.png`: Training plot for the context encoder model with True setting.
+    - `reconstructions_masked.png`: Visualization of masked reconstructions.
+    - `reconstructions_masked_zoomed.png`: Zoomed visualization of masked reconstructions.
+    - `reconstructions.png`: Visualization of reconstructions.
+    - `reconstructions_zoomed.png`: Zoomed visualization of reconstructions.
+
+- **Self_training/**: Contains the scripts for self-training (pseudo-labeling).
+  - `baselineCNN.py`: Definition of the baseline CNN model.
+  - `pseudolabel_finetune.ipynb`: Jupyter notebook for pseudo-labeling and finetuning.
+  - `test_models.ipynb`: Jupyter notebook for testing models.
+  - `train_baseline.ipynb`: Jupyter notebook for training the baseline model.
+
 ## Usage
 
 1. **Clone the repository:**
@@ -49,36 +123,54 @@ The repository is organized as follows:
    pip install -r requirements.txt
    ```
 
-3. **Download the dataset:**
-   - Download the dataset from [Kaggle](https://www.kaggle.com/datasets/abdelghaniaaba/wildfire-prediction-dataset) and place it in the `data/` directory.
+3. **Download the dataset and weights:**
+   ```bash
+   python download.py
+   ```
+   Note: Weights are available in this [drive](https://drive.google.com/drive/u/1/folders/1vWNvn7vMhQxeBK_eEbzXsctbkPQGWKdH)
 
-3.2 **Download Pretrained Swin Transformer (Optional)**
-If training the **Swin Transformer**, download the pretrained weights:
+4. **Download Pretrained Swin Transformer (Optional):**
+   If training the **Swin Transformer**, download the pretrained weights:
+   ```bash
+   wget https://huggingface.co/allenai/satlas-pretrain/resolve/main/satlas-model-v1-highres.pth -O satlas-model-v1-highres.pth
+   ```
 
-```bash
-wget https://huggingface.co/allenai/satlas-pretrain/resolve/main/satlas-model-v1-highres.pth -O satlas-model-v1-highres.pth
-```
+5. **Train the models:**
 
----
-4. **Train the models:**
-
-   -Context Encoder:
-     1. Train the context encoder model:
+   - **Context Encoder:**
+     1. Train the context encoder model and classifier:
        ```bash
-       python context_encoder/train_context_encoder.py
+       cd context_encoder/
+       python train_context_encoder.py
        ```
      2. Train the classifier model:
-       ```bash
-       python context_encoder/train_classifier.py
+       ```bash       
+       cd context_encoder/
+       python train_classifier.py
        ```
+     3. Visualize the results:
+        Open the `visualisation.ipynb` notebook to visualize the model outputs and data.
 
-6. **Visualize the results:**
-   - Open the `visualisation.ipynb` notebook to visualize the model outputs and data.
-  
-7. **Models weight**
-   - Weights are available at [model weights](https://shorturl.at/JuJes)
-  
+   - **Coloration Baseline:**
+     ```bash
+     cd coloration_baseline/
+     python main.py
+     ```
+
+   - **DINO ViT Pretrain:**
+     ```bash
+     cd dino_vit_pretrain/
+     python train_dino_backbone.py
+     ```
+
+   - **Finetune Models:**
+     ```bash
+     cd baseline_vit-finetune_swin-finetune/
+     python train.py --model model_to_fine_tune[vit,swin,baseline]
+     ```
 
 ## Acknowledgments
 
 - Pre-train with Context Encoders: [Context Encoders: Feature Learning by Inpainting](https://arxiv.org/pdf/1604.07379)
+- Swin pretrained transformed [Open ai-generated geospatial data](https://github.com/allenai/satlas?tab=readme-ov-file)
+- Dino algorithm and vit implementation [DINO](https://github.com/facebookresearch/dino)

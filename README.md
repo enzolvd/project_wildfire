@@ -17,40 +17,16 @@ The repository is organized as follows:
 ```
 .
 ├── baseline_vit-finetune_swin-finetune
-│   ├── models.py
-│   ├── train.py
-│   └── utils.py
 ├── checkpoints
 ├── coloration_baseline
-│   ├── dataset.py
-│   ├── main.py
-│   ├── model.py
-│   ├── train.py
-│   └── utils.py
 ├── context_encoder
-│   ├── classifier.py
-│   ├── model.py
-│   ├── train_classifier.py
-│   ├── train_context_encoder.py
-│   ├── utils
-│   │   ├── load_dataset.py
-│   │   ├── utils_classifier.py
-│   │   └── utils_gan.py
-│   └── visualisation.ipynb
 ├── data
 ├── dino_vit_pretrain
-│   ├── train_dino_backbone.py
-│   ├── utils_dino.py
-│   └── vision_transformer.py
 ├── download.py
 ├── outputs
 ├── README.md
 ├── requirements.txt
 └── Self_training
-    ├── baselineCNN.py
-    ├── pseudolabel_finetune.ipynb
-    ├── test_models.ipynb
-    └── train_baseline.ipynb
 ```
 
 - **baseline_vit-finetune_swin-finetune/**: Contains the scripts for finetuning all the models on the validation dataset.

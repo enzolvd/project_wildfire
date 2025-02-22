@@ -7,3 +7,4 @@ pillow>=9.0.0
 wandb>=0.15.0
 scikit-learn>=1.0.0
 pathlib>=1.0.1
+gdown

@@ -2,6 +2,13 @@ import torch
 import torch.nn as nn
 import torchvision
 import torch.nn.functional as F
+
+import sys
+import os
+
+# Add the parent directory to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from dino_vit_pretrain.vision_transformer import VisionTransformer, vit_small
 
 def create_baseline_model():

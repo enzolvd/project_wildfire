@@ -52,9 +52,10 @@ def train(nb_epochs, model, optimizer, device, train_dataset, val_dataset, crite
     val_loader = DataLoader(val_dataset, batch_size=64, shuffle=True, num_workers=8)
 
     if is_classification:
-        save_path = os.path.join("checkpoints", "classification")
+        save_path = os.path.join("../outputs/coloration", "classification")
     else:
-        save_path = os.path.join("checkpoints", "pretrained")
+        save_path = os.path.join("../outputs/coloration", "pretrained")
+    print(save_path)
     train_losses = []
     val_losses = []
     val_accuracies = []

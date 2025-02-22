@@ -30,7 +30,7 @@ def main():
     parser.add_argument("--epochs", type=int, default=10, help="Number of training epochs.")
     parser.add_argument("--batch_size", type=int, default=32, help="Batch size.")
     parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate.")
-    parser.add_argument("--data_dir", type=str, default="./wildfire-prediction-dataset", help="Root directory for dataset.")
+    parser.add_argument("--data_dir", type=str, default="../data", help="Root directory for dataset.")
     parser.add_argument("--output_dir", type=str, default="../outputs", help="Directory to save checkpoints and plots.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed.")
     parser.add_argument("--big_head", action="store_true", help="Use a larger head.")
@@ -52,8 +52,8 @@ def main():
         name = f"{args.model}_epochs_{args.epochs}_has_checkpoint_{args.checkpoint}_big_head_{args.big_head}_freeze_backbone_{args.freeze_backbone}"
     )
 
-
-    output_dir = Path(args.output_dir)
+    output_dir = f"{args.output_dir}/{args.model}"
+    output_dir = Path(output_dir)
     output_dir.mkdir(exist_ok=True, parents=True)
 
 
@@ -78,7 +78,6 @@ def main():
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True,  num_workers=8)
     val_loader   = DataLoader(val_dataset,   batch_size=args.batch_size, shuffle=False, num_workers=8)
     test_loader  = DataLoader(test_dataset,  batch_size=args.batch_size, shuffle=False, num_workers=8)
-
 
     if args.model == "baseline":
         model = create_baseline_model()

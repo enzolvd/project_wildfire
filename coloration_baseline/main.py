@@ -10,10 +10,10 @@ from utils import *
 from train import *
 
 if __name__ == '__main__':
-        
-    pretraining_path = Path("/home/ensta/ensta-cesar/WildFire/wildfire-prediction-dataset/train")
-    val_path = Path("/home/ensta/ensta-cesar/WildFire/wildfire-prediction-dataset/valid")
-    test_path = Path("/home/ensta/ensta-cesar/WildFire/wildfire-prediction-dataset/test")
+    data_path = Path("../data")
+    pretraining_path = data_path / 'train'
+    val_path = data_path / 'valid'
+    test_path = data_path / 'test'
 
     data_transforms = {
             'pretrain': transforms.Compose([transforms.ToTensor()]),
@@ -39,18 +39,18 @@ if __name__ == '__main__':
             test_path=test_path,
             transforms_dict=data_transforms
         )
-
-    train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True, num_workers=8)
-    val_loader   = DataLoader(val_dataset,   batch_size=64, shuffle=False, num_workers=8)
-    test_loader  = DataLoader(test_dataset,  batch_size=64, shuffle=False, num_workers=8)
+    batch_size = 2
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=8)
+    val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False, num_workers=8)
+    test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False, num_workers=8)
 
     model = Baseline(4)
-    result_path = Path("results")
-    os.makedirs(result_path/"coloring", exist_ok = True)
-    os.makedirs(result_path/"frozen_wildfire", exist_ok = True)
-    os.makedirs(result_path/"wildfire", exist_ok = True)
-    os.makedirs(os.path.join("checkpoints", "pretrained"), exist_ok = True)
-    os.makedirs(os.path.join("checkpoints", "classification"), exist_ok = True)
+    result_path = Path("../outputs/coloration")
+    os.makedirs(result_path / "coloring", exist_ok = True)
+    os.makedirs(result_path / "frozen_wildfire", exist_ok = True)
+    os.makedirs(result_path / "wildfire", exist_ok = True)
+    os.makedirs(os.path.join("../outputs/coloration", "pretrained"), exist_ok = True)
+    os.makedirs(os.path.join("../outputs/coloration", "classification"), exist_ok = True)
 
 
 
@@ -63,7 +63,7 @@ if __name__ == '__main__':
 
     print("For the color recognition task:", train_losses[-1], val_losses[-1], val_accuracies[-1])
 
-    plot_curves(train_losses, val_losses, val_accuracies, save_path="results/coloring/results.png", title_suffix="")
+    plot_curves(train_losses, val_losses, val_accuracies, save_path="../outputs/coloration/results.png", title_suffix="")
 
     model.swap_to_classification_head(2)
     model = model.to(device)
@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     print("For the wildfire detection task:", train_losses[-1], val_losses[-1], val_accuracies[-1])
 
-    plot_curves(train_losses, val_losses, val_accuracies, save_path="results/frozen_wildfire/results.png", title_suffix="")
+    plot_curves(train_losses, val_losses, val_accuracies, save_path="../outputs/coloration/frozen_wildfire_results.png", title_suffix="")
 
     model.unfreeze_layers()
     model = model.to(device)
@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
     print("For the wildfire detection task:", train_losses[-1], val_losses[-1], val_accuracies[-1])
 
-    plot_curves(train_losses, val_losses, val_accuracies, save_path="results/wildfire/results.png", title_suffix="")
+    plot_curves(train_losses, val_losses, val_accuracies, save_path="../outputs/coloration/wildfire_results.png", title_suffix="")
 
     test_losses, test_acc = validate(model, test_loader, criterion, device, is_classification=True)
 

@@ -16,9 +16,9 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms
 from torchvision import models as torchvision_models
 
-import dino_vit_pretrain.utils_dino as utils
-import dino_vit_pretrain.vision_transformer as vits
-from dino_vit_pretrain.vision_transformer import DINOHead
+import utils_dino as utils
+import vision_transformer as vits
+from vision_transformer import DINOHead
 
 import wandb  
 
@@ -70,8 +70,9 @@ def get_args_parser():
     parser.add_argument('--local_crops_scale', type=float, nargs='+', default=(0.05, 0.4))
 
     # Misc
-    parser.add_argument('--data_path', default='/path/to/imagenet/train/', type=str)
-    parser.add_argument('--output_dir', default="../outputs", type=str)
+    
+    parser.add_argument('--data_path', default='../data/train/', type=str)
+    parser.add_argument('--output_dir', default="../outputs/dino_backbone", type=str)
     parser.add_argument('--saveckp_freq', default=5, type=int)
     parser.add_argument('--seed', default=0, type=int)
     parser.add_argument('--num_workers', default=10, type=int)

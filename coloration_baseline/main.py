@@ -39,7 +39,7 @@ if __name__ == '__main__':
             test_path=test_path,
             transforms_dict=data_transforms
         )
-    batch_size = 2
+    batch_size = 64
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=8)
     val_loader   = DataLoader(val_dataset,   batch_size=batch_size, shuffle=False, num_workers=8)
     test_loader  = DataLoader(test_dataset,  batch_size=batch_size, shuffle=False, num_workers=8)

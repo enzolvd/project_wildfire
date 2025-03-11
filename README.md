@@ -103,7 +103,7 @@ The repository is organized as follows:
    ```bash
    python download.py
    ```
-   Note: Weights are available in this [drive](https://drive.google.com/drive/u/1/folders/1vWNvn7vMhQxeBK_eEbzXsctbkPQGWKdH)
+   Note: Weights are available in this [drive](https://drive.google.com/drive/folders/1gLYXB_krVpUDv6Qcc932OjjOCe7R4J4c?usp=drive_link)
 
 4. **Download Pretrained Swin Transformer (Optional):**
    If training the **Swin Transformer**, download the pretrained weights:
